@@ -1,0 +1,113 @@
+import {
+    Home,
+    CaseEnter,
+    Download,
+    Statistic,
+    CaseDetail,
+    NewsDetail,
+    NoticeDetail,
+    AccountAssign,
+    BatchHandle,
+    CaseList,
+    DismantleCase,
+    NotFound,
+    Notice,
+    MsgUpdate,
+    CodeUpdate
+} from './pages'
+const routes=[{
+    path:'/home',
+    component:Home,
+    title:'首页',
+    isMenu:true,
+    exact:false
+},{
+    path:'/casein',
+    component:CaseEnter,
+    title:'案件录入',
+    isMenu:true,
+    exact:false
+},{
+    path:'/download',
+    component:Download,
+    title:'资料下载',
+    isMenu:true,
+    exact:false
+},{
+    path:'/statistic',
+    component:Statistic,
+    title:'统计分析',
+    isMenu:true,
+    exact:false
+},{
+    path:'/casedetail',
+    component:CaseDetail,
+    title:'案件详情',
+    isMenu:false,
+    exact:false
+},{
+    path:'/newsdetail',
+    component:NewsDetail,
+    title:'新闻详情',
+    isMenu:false,
+    exact:false
+},{
+    path:'/noticedetail',
+    component:NoticeDetail,
+    title:'通知详情',
+    isMenu:false,
+    exact:false
+},{
+    path:'/account',
+    component:AccountAssign,
+    title:'账号分配',
+    isMenu:false,
+    exact:false
+},{
+    path:'/batchhandle',
+    component:BatchHandle,
+    title:'批量处理',
+    isMenu:false,
+    exact:false
+},{
+    path:'/caselist',
+    component:CaseList,
+    title:'在办案件列表',
+    isMenu:false,
+    exact:false
+},{
+    path:'/dismantlecase',
+    component:DismantleCase,
+    title:'拆预收案',
+    isMenu:false,
+    exact:false
+},{
+    path:'/404',
+    component:NotFound,
+    title:'404',
+    isMenu:false,
+    exact:false
+},{
+    path:'/notice',
+    component:Notice,
+    title:'重要通知',
+    isMenu:false,
+    exact:false
+},{
+    path:'/msgupdate',
+    component:MsgUpdate,
+    title:'个人信息修改',
+    isMenu:false,
+    exact:false
+},{
+    path:'/ncodeupdate',
+    component:CodeUpdate,
+    title:'修改密码',
+    isMenu:false,
+    exact:false
+},{
+    path:'/',
+    title:'案件列表',
+    isMenu:true
+},]
+export default routes
