@@ -20,94 +20,107 @@ const routes=[{
     component:Home,
     title:'首页',
     isMenu:true,
-    exact:false
+    exact:false,
+    icon:'home'
 },{
     path:'/casein',
     component:CaseEnter,
     title:'案件录入',
     isMenu:true,
-    exact:false
+    exact:false,
+    icon:'enter'
 },{
     path:'/download',
     component:Download,
     title:'资料下载',
     isMenu:true,
-    exact:false
+    exact:false,
+    icon:'download'
 },{
     path:'/statistic',
     component:Statistic,
     title:'统计分析',
+    exact:false,
     isMenu:true,
-    exact:false
+    icon:'line-chart'
 },{
     path:'/casedetail',
     component:CaseDetail,
     title:'案件详情',
     isMenu:false,
-    exact:false
+    exact:false,
 },{
     path:'/newsdetail',
     component:NewsDetail,
     title:'新闻详情',
     isMenu:false,
-    exact:false
+    exact:false,
 },{
     path:'/noticedetail',
     component:NoticeDetail,
     title:'通知详情',
     isMenu:false,
-    exact:false
+    exact:false,
 },{
     path:'/account',
     component:AccountAssign,
     title:'账号分配',
     isMenu:false,
-    exact:false
+    exact:false,
+    listMenu:true
 },{
     path:'/batchhandle',
     component:BatchHandle,
     title:'批量处理',
     isMenu:false,
-    exact:false
+    exact:false,
+    listMenu:true
 },{
     path:'/caselist',
     component:CaseList,
     title:'在办案件列表',
     isMenu:false,
-    exact:false
+    exact:false,
+    icon:'bars',
+    listMenu:true
 },{
     path:'/dismantlecase',
     component:DismantleCase,
     title:'拆预收案',
     isMenu:false,
-    exact:false
+    exact:false,
+    listMenu:true
 },{
     path:'/404',
     component:NotFound,
     title:'404',
     isMenu:false,
-    exact:false
+    exact:false,
+    icon:''
 },{
     path:'/notice',
     component:Notice,
     title:'重要通知',
     isMenu:false,
-    exact:false
+    exact:false,
+    userCenter:true
 },{
     path:'/msgupdate',
     component:MsgUpdate,
     title:'个人信息修改',
     isMenu:false,
-    exact:false
+    exact:false,
+    userCenter:true
 },{
     path:'/ncodeupdate',
     component:CodeUpdate,
     title:'修改密码',
     isMenu:false,
-    exact:false
+    exact:false,
+    userCenter:true
 },{
-    path:'/',
+    path:'/list',
     title:'案件列表',
-    isMenu:true
-},]
+    component:DismantleCase,
+}]
 export default routes
