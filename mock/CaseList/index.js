@@ -8,7 +8,7 @@ const caselist=({limited,offset})=>{
     const isLastPage=currentPage>=totalCount/limited
     const dataCount=isLastPage&&(totalCount%limited)!==0 ? totalCount%limited : limited
     const data=`data|${limited}`
-    const totalPages=Number.parseInt(totalCount/limited)
+    const totalPages=Number.parseInt(totalCount/limited,10)
     return Mock.mock({
         "code":200,
         [data]:[{
