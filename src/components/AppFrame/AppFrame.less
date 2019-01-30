@@ -1,6 +1,7 @@
 .ant-layout-header{
     background-color: #1f4359;
     height: 70px;
+    position: relative;
     .ant-menu-dark, .ant-menu-dark .ant-menu-sub {
         background-color: #1f4359;
         .logo{
@@ -11,6 +12,29 @@
                 max-height: 48px;
             }
         }
+    }
+    .ant-menu{
+        background: #1f4359;
+        color: #fff;
+        border-bottom: 0;
+        float: right;
+        position: absolute;
+        right: 20px;
+        top: 12px;
+       li.ant-menu-item-selected{
+           color: aliceblue;
+           border-bottom: 2px solid aliceblue;
+       }
+       li.ant-menu-item-active{
+        color: lightblue;
+        border-bottom: 2px solid lightblue;
+    }
+    span.ant-avatar{
+        margin-right: 5px;
+    }
+    i.anticon.anticon-user{
+        margin-right: 0;
+    }
     }
 }
 #sider{

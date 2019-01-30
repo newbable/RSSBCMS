@@ -1,11 +1,11 @@
 import React, { Component } from 'react'
-import { Table,Tag } from 'antd';
+import { Table,Tag,Col,Input,Select } from 'antd';
 import moment from 'moment'
 // import { Resizable } from 'react-resizable';
 import {fatchCaseList} from '../../../requests'
 import './CaseList.less'
 
-
+const Option = Select.Option;
 export default class CaseList extends Component {
 
     columns= [{
@@ -95,11 +95,24 @@ export default class CaseList extends Component {
     }
     componentDidMount(){
       this.fatchListData()
-    }
+    };
     render() {   
     return (
       <div>
-        <h3>在办案件列表</h3>
+        <h2>在办案件列表</h2>
+        <div id="findCase">
+        <Col span={4}>
+          <label>
+            <Input defaultValue="26888888" size="default"/>
+          </label>
+        </Col>
+        <Col span={6}>
+          <Select style={{}} defaultValue="Home">
+            <Option value="Home">Home</Option>
+            <Option value="Company">Company</Option>
+          </Select>
+        </Col>
+        </div>
         <Table
         bordered
         columns={this.columns}

@@ -1,16 +1,29 @@
 import React, { Component } from 'react'
 import routes from '../../routes'
-import {withRouter} from 'react-router-dom'
-import { Layout, Menu, Icon} from 'antd';
+import {withRouter,Link} from 'react-router-dom'
+import { Layout, Menu, Icon,Avatar} from 'antd';
 
 import './AppFrame.less'
 import logo from '../../assets/logo.png'
+
 const menus=routes.filter(route=>route.isMenu===true)
 const listMenus=routes.filter(route=>route.listMenu===true)
 const userCenter=routes.filter(route=>route.userCenter===true)
+
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
+
 class AppFrame extends Component {
+  state = {
+    current: 'mail',
+  }
+
+  handleClick = (e) => {
+    console.log('click ', e);
+    this.setState({
+      current: e.key,
+    });
+  }
   handleMenuClick=({ key })=>{
     const {
         history,
@@ -25,6 +38,30 @@ class AppFrame extends Component {
         <div className="logo" style={{display:'flex',alignItems:'center'}}>
           <img src={logo} alt="RSSB管理系统" style={{height:'64px',lineHeight:'64px'}}/>
           <span style={{color:'aliceblue',fontSize:'24px',lineHeight:'70px',marginLeft:'20px'}}>RSSB管理系统</span>
+          <Menu
+            onClick={this.handleClick}
+            selectedKeys={[this.state.current]}
+            mode="horizontal"
+          >
+            <Menu.Item key="mail">
+              我的工作台
+            </Menu.Item>
+            <Menu.Item key="app">
+              业务办理
+            </Menu.Item>
+            <Menu.Item key="find">
+              案件查询
+            </Menu.Item>
+            <Menu.Item key="alipay">
+              <Link
+              to={{pathname:'/login'}}
+              rel="noopener noreferrer"
+              style={{color:'#fff'}}>
+              <Avatar shape="square" icon="user" />
+              技术部
+              </Link>
+            </Menu.Item>
+          </Menu>
         </div>
       </Header>
       <Layout>
