@@ -8,10 +8,13 @@ const caselist=require('./CaseList')
 //统计页段落
 const tongji=require('./jingjing/tongji')
 const query=require('./jingjing/query')
+const login=require('./userLogin')
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
 app.use(caselist)
+app.use(login)
 app.use('/api/v1/tongji',tongji)
 app.use('/api/v1/query',query)
 app.get('/test',(req,res)=>{

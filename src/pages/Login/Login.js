@@ -1,16 +1,25 @@
 import React, { Component } from 'react'
 import {
-  Form, Icon, Input, Button, Checkbox,Row,Col
+  Form, Icon, Input, Button, Checkbox,Row,Col,Spin
 } from 'antd';
 import './Login.less'
+import {connect} from 'react-redux'
+import {doLogin} from '../../actions/user'
 
+const mapStateTOProps=state=>{
+  return {
+    isLoding:state.global.isLoding
+  }
+}
+@connect(mapStateTOProps,{doLogin})
 @Form.create()
 export default class Login extends Component {
   handleSubmit = (e) => {
     e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
+        // 当输入框验证通过后，处理登录事件
+        this.props.doLogin(values)
       }
     });
   }
@@ -18,7 +27,9 @@ export default class Login extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
+      
       <div id="login">
+      <Spin spinning={this.props.isLoding}>
       <Form onSubmit={this.handleSubmit} className="login-form">
       <h1>RSSB后台管理系统登录</h1>
         <Row >
@@ -54,7 +65,9 @@ export default class Login extends Component {
           </Col>
         </Row>
       </Form>
+      </Spin>
       </div>
+      
     )
   }
 }

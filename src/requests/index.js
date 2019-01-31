@@ -26,3 +26,8 @@ ajax.interceptors.request.use((config) => {
   export const queryList=()=>{
     return ajax.get('/api/v1/query')
 }
+
+//登录异步请求
+export const userLogin=(data)=>{
+    return ajax.post('/api/userlogin',data)
+}

@@ -1,0 +1,5 @@
+export default{
+    G_REQUEST_START:'G_request_start',
+    G_REQUEST_COMPLETED:'G_REQUEST_COMPLETED',
+    LOGIN_SUCCESS:'LOGIN_SUCCESS'
+}
