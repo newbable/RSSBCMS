@@ -51,7 +51,7 @@ export default class Statistic extends Component {
           this.setState({
             data:res.data.data.paragraph         
           })
-         // console.log(res.data)
+         console.log(res.data)
         }
     })
   }
