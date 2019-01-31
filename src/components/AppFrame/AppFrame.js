@@ -31,9 +31,10 @@ export default class AppFrame extends Component {
   }
 
   handleClick = (e) => {
-    console.log('click ');
+    // console.log('click ');
     this.props.logout()
     this.props.history.push('/login')
+    window.sessionStorage.removeItem('userInfo')
     this.setState({
       current: e.key,
     });

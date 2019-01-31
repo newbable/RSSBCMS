@@ -7,17 +7,20 @@ const initState={
     avatar:'',
     isLogin:false
 }
-export default (state=initState,action)=>{
+const userxinxi=JSON.parse(window.sessionStorage.getItem('userMsg')) || initState
+export default (state=userxinxi,action)=>{
+    let newState=state
     switch(action.type){
         case actionType.LOGIN_SUCCESS:
         // console.log(action)
-        return {
+        newState= {
             ...state,
             ...action.payload,
             isLogin:true
         }
+        break;
         case actionType.LOGOUT:
-        return {
+        newState= {
             ...state,
             id:'',
             displayName:'',
@@ -25,7 +28,10 @@ export default (state=initState,action)=>{
             avatar:'',
             isLogin:false
         }
+        break;
         default:
-        return state
+        break;
     }
+    window.sessionStorage.setItem('userMsg',JSON.stringify(newState))
+    return newState
 }
