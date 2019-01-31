@@ -29,3 +29,8 @@ export const doLogin=(userLoginInfo)=>{
             })
     }
 }
+export const logout=()=>{
+    return {
+        type:actionType.LOGOUT
+    }
+}

@@ -1,9 +1,11 @@
 import actionType from "../../actions/actionType";
 
 const initState={
+    id:'',
     displayName:'张三',
-    token:'sflkseg',
-    avatar:'address'
+    token:'',
+    avatar:'',
+    isLogin:false
 }
 export default (state=initState,action)=>{
     switch(action.type){
@@ -11,7 +13,17 @@ export default (state=initState,action)=>{
         // console.log(action)
         return {
             ...state,
-            ...action.payload
+            ...action.payload,
+            isLogin:true
+        }
+        case actionType.LOGOUT:
+        return {
+            ...state,
+            id:'',
+            displayName:'',
+            token:'',
+            avatar:'',
+            isLogin:false
         }
         default:
         return state

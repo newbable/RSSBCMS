@@ -4,6 +4,7 @@ import {withRouter,Link} from 'react-router-dom'
 import { Layout, Menu, Icon,Avatar,Tooltip} from 'antd';
 import { connect } from 'react-redux';
 
+import {logout} from '../../actions/user'
 import './AppFrame.less'
 import logo from '../../assets/logo.png'
 
@@ -17,11 +18,12 @@ const text = <span>退出</span>
 
 const mapState=state=>{
   return {
-    displayName:state.user.displayName
+    displayName:state.user.displayName,
+    avatar:state.user.avatar
   }
 }
 
-@connect(mapState)
+@connect(mapState,{logout})
 @withRouter
 export default class AppFrame extends Component {
   state = {
@@ -30,6 +32,8 @@ export default class AppFrame extends Component {
 
   handleClick = (e) => {
     console.log('click ');
+    this.props.logout()
+    this.props.history.push('/login')
     this.setState({
       current: e.key,
     });
@@ -68,7 +72,7 @@ export default class AppFrame extends Component {
               to={{pathname:'/login'}}
               rel="noopener noreferrer"
               style={{color:'#fff'}}>
-              <Avatar shape="square" icon="user" />
+              <Avatar shape="square" src={this.props.avatar} />
               {this.props.displayName}
               </Link>
               </Tooltip>

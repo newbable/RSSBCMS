@@ -4,11 +4,14 @@ import {
 } from 'antd';
 import './Login.less'
 import {connect} from 'react-redux'
+import {Redirect} from 'react-router-dom'
 import {doLogin} from '../../actions/user'
 
 const mapStateTOProps=state=>{
+  console.log(state.user)
   return {
-    isLoding:state.global.isLoding
+    isLoding:state.global.isLoding,
+    isLogin:state.user.isLogin
   }
 }
 @connect(mapStateTOProps,{doLogin})
@@ -27,7 +30,10 @@ export default class Login extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
     return (
-      
+      this.props.isLogin
+       ?
+       <Redirect to="/admin/home"/>
+       :
       <div id="login">
       <Spin spinning={this.props.isLoding}>
       <Form onSubmit={this.handleSubmit} className="login-form">
