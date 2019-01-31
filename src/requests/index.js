@@ -1,8 +1,8 @@
 import axios from 'axios'
 const isDev=process.env.NODE_ENV==='development'
 const ajax=axios.create({
-     baseURL:isDev ?'http://192.168.0.104:4545':''
-    // baseURL: isDev ? 'http://127.0.0.1:4995' : ''
+     //baseURL:isDev ?'http://192.168.0.104:4545':''
+     baseURL: isDev ? 'http://127.0.0.1:4545' : ''
     }
 )
 
