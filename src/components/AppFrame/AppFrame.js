@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import routes from '../../routes'
 import {withRouter,Link} from 'react-router-dom'
-import { Layout, Menu, Icon,Avatar} from 'antd';
+import { Layout, Menu, Icon,Avatar,Tooltip} from 'antd';
+import { connect } from 'react-redux';
 
+import {logout} from '../../actions/user'
 import './AppFrame.less'
 import logo from '../../assets/logo.png'
 
@@ -12,14 +14,27 @@ const userCenter=routes.filter(route=>route.userCenter===true)
 
 const { SubMenu } = Menu;
 const { Header, Content, Sider } = Layout;
+const text = <span>退出</span>
 
-class AppFrame extends Component {
+const mapState=state=>{
+  return {
+    displayName:state.user.displayName,
+    avatar:state.user.avatar
+  }
+}
+
+@connect(mapState,{logout})
+@withRouter
+export default class AppFrame extends Component {
   state = {
     current: 'mail',
   }
 
   handleClick = (e) => {
-    console.log('click ', e);
+    // console.log('click ');
+    this.props.logout()
+    this.props.history.push('/login')
+    window.sessionStorage.removeItem('userInfo')
     this.setState({
       current: e.key,
     });
@@ -53,13 +68,15 @@ class AppFrame extends Component {
               案件查询
             </Menu.Item>
             <Menu.Item key="alipay">
+            <Tooltip placement="bottom" title={text}>
               <Link
               to={{pathname:'/login'}}
               rel="noopener noreferrer"
               style={{color:'#fff'}}>
-              <Avatar shape="square" icon="user" />
-              技术部
+              <Avatar shape="square" src={this.props.avatar} />
+              {this.props.displayName}
               </Link>
+              </Tooltip>
             </Menu.Item>
           </Menu>
         </div>
@@ -117,4 +134,3 @@ class AppFrame extends Component {
     )
   }
 }
-export default  withRouter(AppFrame)

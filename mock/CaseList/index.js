@@ -3,11 +3,11 @@ const router=new Router()
 const Mock=require('mockjs')
 const caselist=({limited,offset})=>{
     const start=offset+100
-    const totalCount=60
+    const totalCount=61
     const currentPage=offset/limited +1
     const isLastPage=currentPage>=totalCount/limited
     const dataCount=isLastPage&&(totalCount%limited)!==0 ? totalCount%limited : limited
-    const data=`data|${limited}`
+    const data=dataCount===1?`data`:`data|${limited}`
     const totalPages=Number.parseInt(totalCount/limited,10)
     return Mock.mock({
         "code":200,

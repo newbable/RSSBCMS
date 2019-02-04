@@ -1,8 +1,8 @@
 import axios from 'axios'
 const isDev=process.env.NODE_ENV==='development'
 const ajax=axios.create({
-     baseURL:isDev ?'http://192.168.0.104:4545':''
-    // baseURL: isDev ? 'http://127.0.0.1:4995' : ''
+     //baseURL:isDev ?'http://192.168.0.104:4545':''
+     baseURL: isDev ? 'http://127.0.0.1:4545' : ''
     }
 )
 
@@ -25,4 +25,9 @@ ajax.interceptors.request.use((config) => {
   //查询页面的数据
   export const queryList=()=>{
     return ajax.get('/api/v1/query')
+}
+
+//登录异步请求
+export const userLogin=(data)=>{
+    return ajax.post('/api/userlogin',data)
 }
