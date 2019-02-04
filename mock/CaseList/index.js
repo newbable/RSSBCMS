@@ -31,4 +31,5 @@ const caselist=({limited,offset})=>{
 router.post('/api/caselist',(req,res)=>{
     res.json(caselist(req.body))
 })
+
 module.exports=router

@@ -8,6 +8,7 @@ const caselist=require('./CaseList')
 //统计页段落
 const tongji=require('./jingjing/tongji')
 const query=require('./jingjing/query')
+
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
