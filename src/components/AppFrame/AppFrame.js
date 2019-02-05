@@ -32,12 +32,14 @@ export default class AppFrame extends Component {
 
   handleClick = (e) => {
     // console.log('click ');
-    this.props.logout()
-    this.props.history.push('/login')
-    window.sessionStorage.removeItem('userInfo')
     this.setState({
       current: e.key,
     });
+  }
+  handleLoginClick=()=>{
+    this.props.logout()
+    this.props.history.push('/login')
+    window.sessionStorage.removeItem('userInfo')
   }
   handleMenuClick=({ key })=>{
     const {
@@ -67,7 +69,8 @@ export default class AppFrame extends Component {
             <Menu.Item key="find">
               案件查询
             </Menu.Item>
-            <Menu.Item key="alipay">
+            <Menu.Item key="alipay"
+            onClick={this.handleLoginClick}>
             <Tooltip placement="bottom" title={text}>
               <Link
               to={{pathname:'/login'}}
