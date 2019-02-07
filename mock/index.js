@@ -9,7 +9,6 @@ const caselist=require('./CaseList')
 const tongji=require('./jingjing/tongji')
 //查询页数据
 const query=require('./jingjing/query')
-
 const login=require('./userLogin')
 
 app.use(bodyParser.json())
