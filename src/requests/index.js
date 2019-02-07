@@ -23,8 +23,8 @@ ajax.interceptors.request.use((config) => {
       return ajax.get('/api/v1/tongji')
   }
   //查询页面的数据
-  export const queryList=()=>{
-    return ajax.get('/api/v1/query')
+  export const queryList=(params)=>{
+    return ajax.post('/api/v1/query',params)
 }
 
 //登录异步请求

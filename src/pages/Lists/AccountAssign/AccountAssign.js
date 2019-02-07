@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Table, Button,Card,Input } from 'antd';
 import { queryList } from '../../../requests'
-import { spawn } from 'child_process';
+//import { spawn } from 'child_process';
 
 export default class AccountAssign extends Component {
   columns= [{
@@ -24,18 +24,22 @@ export default class AccountAssign extends Component {
     title: '案件状态',
     dataIndex: 'status',
     render:(status)=>{
-console.log(typeof(status))
+      var x='';
       switch(status){
         case 1:
-        return <span>未办理</span>;        
+        x="未办理";
+        break;      
         case 2:
-        return <span>办理中</span>;
+        x="已办理";
+        break;  
         case 3:
-        return <span>已办理</span>;
-        default: return <span>未知</span>;
+        x="正在办理";
+        break;  
+        default: x="未知";
       }
-     
+     return <span>{x}</span>;
      }
+     
   },{
     title: '操作',
     //key: 'x', 
@@ -55,7 +59,10 @@ console.log(typeof(status))
     super()
     this.state={
       dataSource:[],
-      isLoding:false
+      isLoding:false,
+      totalCount:0,
+      pageSize:6,//每页显示条数
+      currentPage:1,//当前页码
     }
   }
   //获取查询列表的方法
@@ -63,18 +70,33 @@ console.log(typeof(status))
     this.setState({
       isLoding:true
     })
-    queryList()
+    queryList({
+      offset:(this.state.currentPage-1)*this.state.pageSize,
+      limited:this.state.pageSize
+    })
     .then(res=>{
       if(res.data.code===200){
         this.setState({
           dataSource:res.data.data,
-          isLoading:false
+          isLoading:false,
+          totalCount:res.data.totalCount,
         })
         console.log(res.data)
       }
     })
   }
+ //改变页码时
+onTableChange=({current,pageSize})=>{
+  console.log(current,pageSize)
+  const currentPage=(this.state.pageSize === pageSize) ? current:1
+ this.setState({
+  currentPage,
+  pageSize
+ },()=>{
+   this.getQueryList()
+ })
  
+}
   componentDidMount(){
   this.getQueryList()
   }
@@ -89,15 +111,16 @@ console.log(typeof(status))
           <Table 
           columns={this.columns} dataSource={this.state.dataSource} 
           loading={this.isLoading}
+          onChange={this.onTableChange}
           pagination={{
-            pageSize:5,
-            hideOnSinglePage:true,
+            pageSize:this.state.pageSize,
+            //hideOnSinglePage:true,
             showQuickJumper:true,
-            pageSizeOptions	:[
-              '5','10'
-            ],
-            showSizeChanger:true                              
-          }}
+            current:this.state.currentPage,          
+            showSizeChanger:true,
+            pageSizeOptions:['6','8','12'],
+            total:this.state.totalCount                             
+          }}                                     
           />
        </Card>
      

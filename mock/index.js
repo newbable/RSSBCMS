@@ -9,10 +9,9 @@ const caselist=require('./CaseList')
 const tongji=require('./jingjing/tongji')
 //查询页数据
 const query=require('./jingjing/query')
-<<<<<<< HEAD
-=======
+
 const login=require('./userLogin')
->>>>>>> 948aeef53291830135a49a6108280306b0d3d7b2
+
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
