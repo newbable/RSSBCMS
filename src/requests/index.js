@@ -39,3 +39,7 @@ export const homePlay=()=>{
 export const newsDetail=()=>{
   return ajax.post('/api/v1/newsDetail')
 }
+//案件录入
+export const caseIn=(data)=>{
+  return ajax.post('/api/v1/casein',data)
+}

@@ -128,6 +128,20 @@ export default class MsgUpdate extends Component {
         </Form.Item>
         <Form.Item
           {...formItemLayout}
+          label="英文名"
+        >
+          {getFieldDecorator('Ename', {
+            rules: [{ required: false, message: '请输入英文名' }],
+          })(
+            <AutoComplete
+            placeholder={this.props.Ename}
+            >
+              <Input setfieldsvalue={this.props.Ename}/>
+            </AutoComplete>
+          )}
+        </Form.Item>
+        <Form.Item
+          {...formItemLayout}
           label="民族"
         >
           {getFieldDecorator('nation', {
@@ -156,6 +170,20 @@ export default class MsgUpdate extends Component {
         </Form.Item>
         <Form.Item
           {...formItemLayout}
+          label="职位"
+        >
+          <Row gutter={8}>
+            <Col span={24}>
+              {getFieldDecorator('captcha', {
+                rules: [{ required: false, message: '请输入!' }],
+              })(
+                <Input setfieldsvalue={this.props.position}/>
+              )}
+            </Col>
+          </Row>
+        </Form.Item>
+        <Form.Item
+          {...formItemLayout}
           label={(
             <span>
               邮箱&nbsp;
@@ -173,17 +201,6 @@ export default class MsgUpdate extends Component {
         </Form.Item>
         <Form.Item
           {...formItemLayout}
-          label="家庭通讯地址"
-        >
-          {getFieldDecorator('residence', {
-            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-            rules: [{ type: 'array', required: true, message: '请输入居住地!' }],
-          })(
-            <Cascader options={residences} />
-          )}
-        </Form.Item>
-        <Form.Item
-          {...formItemLayout}
           label="联系电话"
         >
           {getFieldDecorator('phone', {
@@ -194,32 +211,16 @@ export default class MsgUpdate extends Component {
         </Form.Item>
         <Form.Item
           {...formItemLayout}
-          label="英文名"
+          label="家庭通讯地址"
         >
-          {getFieldDecorator('Ename', {
-            rules: [{ required: false, message: '请输入英文名' }],
+          {getFieldDecorator('residence', {
+            initialValue: ['zhejiang', 'hangzhou', 'xihu'],
+            rules: [{ type: 'array', required: true, message: '请输入居住地!' }],
           })(
-            <AutoComplete
-            placeholder={this.props.Ename}
-            >
-              <Input setfieldsvalue={this.props.Ename}/>
-            </AutoComplete>
+            <Cascader options={residences} />
           )}
         </Form.Item>
-        <Form.Item
-          {...formItemLayout}
-          label="职位"
-        >
-          <Row gutter={8}>
-            <Col span={12}>
-              {getFieldDecorator('captcha', {
-                rules: [{ required: false, message: '请输入验证码!' }],
-              })(
-                <Input setfieldsvalue={this.props.position}/>
-              )}
-            </Col>
-          </Row>
-        </Form.Item>
+        
         <Form.Item {...tailFormItemLayout}>
           <Button type="primary" htmlType="submit" onClick={success}>确认修改</Button>
         </Form.Item>
