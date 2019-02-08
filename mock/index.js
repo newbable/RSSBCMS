@@ -10,12 +10,18 @@ const tongji=require('./jingjing/tongji')
 //查询页数据
 const query=require('./jingjing/query')
 const login=require('./userLogin')
+//首页轮播图
+const playimg=require('./HomePlay')
+//新闻详情
+const news=require('./newsDetail')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 app.use(cors())
 app.use(caselist)
 app.use(login)
+app.use(playimg)
+app.use(news)
 
 app.use('/api/v1/tongji',tongji)
 app.use('/api/v1/query',query)
