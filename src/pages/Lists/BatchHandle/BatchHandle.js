@@ -113,21 +113,21 @@ componentDidMount(){
             id="caseIn"
           >
             <Menu.Item key="1">
-            <Card style={{ width: 260,border:'none' }}>
+            <Card style={{ width: 260,borderRadius:'5px'  }}>
               <Icon type="check-circle" />
               <p>批量操作(首次分案)</p>
               <span>说明：对一批待分案案件进行分案</span>
             </Card>
             </Menu.Item>
             <Menu.Item key="2">
-            <Card style={{ width: 260,border:'none' }}>
+            <Card style={{ width: 260,borderRadius:'5px'  }}>
             <Icon type="reload" />
               <p>批量操作(普通阶段分案)</p>
               <span>说明：对一批待分案案件进行分案</span>
             </Card>
             </Menu.Item>
             <Menu.Item key="3">
-            <Card style={{ width: 260,border:'none' }}>
+            <Card style={{ width: 260,borderRadius:'5px' }}>
               <Icon type="upload" />
               <p>批量申请延期</p>
               <span>说明：对一批办理案件进行延期申请</span>
