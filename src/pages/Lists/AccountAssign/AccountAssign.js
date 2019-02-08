@@ -87,7 +87,7 @@ export default class AccountAssign extends Component {
   }
  //改变页码时
 onTableChange=({current,pageSize})=>{
-  console.log(current,pageSize)
+ // console.log(current,pageSize)
   const currentPage=(this.state.pageSize === pageSize) ? current:1
  this.setState({
   currentPage,
