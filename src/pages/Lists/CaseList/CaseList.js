@@ -73,7 +73,7 @@ export default class CaseList extends Component {
       })
         .then(resp=>{
           if(resp.data.code===200){
-            console.log(resp.data)
+            // console.log(resp.data)
             this.setState({
               dataSource:resp.data.data,
               totalCount:resp.data.totalCount,

@@ -1,9 +1,9 @@
 import React, { Component } from 'react'
+import {connect} from 'react-redux'
 import './MsgUpdate.less'
-import {Form,Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete} from 'antd'
+import {Form,Input, Tooltip, Icon, Cascader, Select, Row, Col, Button, AutoComplete,message} from 'antd'
 
 const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
 
 const residences = [{
   value: 'zhejiang',
@@ -28,6 +28,23 @@ const residences = [{
     }],
   }],
 }];
+const success = () => {
+  message.success('修改成功');
+};
+const mapState=(state)=>{
+  return {
+    username:state.manager.username,
+    nation:state.manager.nation,
+    nativePlace:state.manager.nativePlace,
+    email:state.manager.email,
+    address:state.manager.address,
+    phone:state.manager.phone,
+    Ename:state.manager.Ename,
+    position:state.manager.position
+  }
+}
+
+@connect(mapState)
 @Form.create()
 export default class MsgUpdate extends Component {
   state = {
@@ -40,6 +57,7 @@ export default class MsgUpdate extends Component {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        window.localStorage.setItem('usermsg',JSON.stringify(values))
       }
     });
   }
@@ -47,15 +65,6 @@ export default class MsgUpdate extends Component {
   handleConfirmBlur = (e) => {
     const value = e.target.value;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
-  }
-
-  compareToFirstPassword = (rule, value, callback) => {
-    const form = this.props.form;
-    if (value && value !== form.getFieldValue('password')) {
-      callback('Two passwords that you enter is inconsistent!');
-    } else {
-      callback();
-    }
   }
 
   validateToNextPassword = (rule, value, callback) => {
@@ -66,19 +75,8 @@ export default class MsgUpdate extends Component {
     callback();
   }
 
-  handleWebsiteChange = (value) => {
-    let autoCompleteResult;
-    if (!value) {
-      autoCompleteResult = [];
-    } else {
-      autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
-    }
-    this.setState({ autoCompleteResult });
-  }
-
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult } = this.state;
 
     const formItemLayout = {
       labelCol: {
@@ -111,15 +109,9 @@ export default class MsgUpdate extends Component {
       </Select>
     );
 
-    const websiteOptions = autoCompleteResult.map(website => (
-      <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-    ));
     return (
       <div>
-        <div className="th"><span>修改个人信息</span></div>
-        <hr/>
-        <div className="th"><span>修改您的联系方式</span></div>
-        <hr/>
+        <div className="th" style={{textAlign:'center',margin:'0 auto'}}><span style={{fontSize:'20px'}}>个人基本信息</span></div>
         <div id="update">
         <Form onSubmit={this.handleSubmit}>
         <Form.Item
@@ -128,12 +120,10 @@ export default class MsgUpdate extends Component {
         >
           {getFieldDecorator('name', {
             rules: [{
-              type: 'text', message: 'The input is not valid name!',
-            }, {
-              required: true, message: 'Please input your Name!',
+              required: true, message: '请输入姓名!',
             }],
           })(
-            <Input />
+            <Input type="text" placeholder={this.props.username}/>
           )}
         </Form.Item>
         <Form.Item
@@ -142,12 +132,12 @@ export default class MsgUpdate extends Component {
         >
           {getFieldDecorator('nation', {
             rules: [{
-              required: true, message: 'Please input your nation!',
+              required: true, message: '请输入国籍!',
             }, {
               validator: this.validateToNextPassword,
             }],
           })(
-            <Input type="text" />
+            <Input type="text" placeholder={this.props.nation}/>
           )}
         </Form.Item>
         <Form.Item
@@ -156,29 +146,29 @@ export default class MsgUpdate extends Component {
         >
           {getFieldDecorator('confirm', {
             rules: [{
-              required: true, message: 'Please confirm your password!',
+              required: true, message: '请输入籍贯!',
             }, {
               validator: this.compareToFirstPassword,
             }],
           })(
-            <Input type="password" onBlur={this.handleConfirmBlur} />
+            <Input type="text" onBlur={this.handleConfirmBlur} placeholder={this.props.nativePlace}/>
           )}
         </Form.Item>
         <Form.Item
           {...formItemLayout}
           label={(
             <span>
-              电子邮件&nbsp;
-              <Tooltip title="What do you want others to call you?">
+              邮箱&nbsp;
+              <Tooltip title="我们会将有关通知发送到您的邮箱">
                 <Icon type="question-circle-o" />
               </Tooltip>
             </span>
           )}
         >
           {getFieldDecorator('nickname', {
-            rules: [{ required: true, message: 'Please input your nickname!', whitespace: true }],
+            rules: [{ required: true, message: '请输入邮箱!', whitespace: true }],
           })(
-            <Input />
+            <Input placeholder={this.props.email}/>
           )}
         </Form.Item>
         <Form.Item
@@ -187,7 +177,7 @@ export default class MsgUpdate extends Component {
         >
           {getFieldDecorator('residence', {
             initialValue: ['zhejiang', 'hangzhou', 'xihu'],
-            rules: [{ type: 'array', required: true, message: 'Please select your habitual residence!' }],
+            rules: [{ type: 'array', required: true, message: '请输入居住地!' }],
           })(
             <Cascader options={residences} />
           )}
@@ -197,54 +187,41 @@ export default class MsgUpdate extends Component {
           label="联系电话"
         >
           {getFieldDecorator('phone', {
-            rules: [{ required: true, message: 'Please input your phone number!' }],
+            rules: [{ required: true, message: '请输入联系电话!' }],
           })(
-            <Input addonBefore={prefixSelector} style={{ width: '100%' }} />
+            <Input addonBefore={prefixSelector} style={{ width: '100%' }} placeholder={this.props.phone}/>
           )}
         </Form.Item>
         <Form.Item
           {...formItemLayout}
-          label="英文姓名"
+          label="英文名"
         >
-          {getFieldDecorator('website', {
-            rules: [{ required: false, message: 'Please input website!' }],
+          {getFieldDecorator('Ename', {
+            rules: [{ required: false, message: '请输入英文名' }],
           })(
             <AutoComplete
-              dataSource={websiteOptions}
-              onChange={this.handleWebsiteChange}
-              placeholder="website"
+            placeholder={this.props.Ename}
             >
-              <Input />
+              <Input setfieldsvalue={this.props.Ename}/>
             </AutoComplete>
           )}
         </Form.Item>
         <Form.Item
           {...formItemLayout}
           label="职位"
-          extra="We must make sure that your are a human."
         >
           <Row gutter={8}>
             <Col span={12}>
               {getFieldDecorator('captcha', {
-                rules: [{ required: true, message: 'Please input the captcha you got!' }],
+                rules: [{ required: false, message: '请输入验证码!' }],
               })(
-                <Input />
+                <Input setfieldsvalue={this.props.position}/>
               )}
-            </Col>
-            <Col span={12}>
-              <Button>Get captcha</Button>
             </Col>
           </Row>
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
-          {getFieldDecorator('agreement', {
-            valuePropName: 'checked',
-          })(
-            <Checkbox>I have read the <a href="">agreement</a></Checkbox>
-          )}
-        </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">确认修改</Button>
+          <Button type="primary" htmlType="submit" onClick={success}>确认修改</Button>
         </Form.Item>
       </Form>
         </div>

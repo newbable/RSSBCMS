@@ -31,3 +31,11 @@ ajax.interceptors.request.use((config) => {
 export const userLogin=(data)=>{
     return ajax.post('/api/userlogin',data)
 }
+//首页轮播图
+export const homePlay=()=>{
+  return ajax.post('/api/v1/playImg')
+}
+//新闻详情
+export const newsDetail=()=>{
+  return ajax.post('/api/v1/newsDetail')
+}
