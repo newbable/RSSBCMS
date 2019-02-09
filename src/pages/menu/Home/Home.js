@@ -54,7 +54,6 @@ export default class Home extends Component {
   render() {
     return (
       <div>
-        首页
         <div className="swiper-container">
         <div className="swiper-wrapper">
             <div className="swiper-slide"><img src={this.state.img[0]} alt=''/></div>

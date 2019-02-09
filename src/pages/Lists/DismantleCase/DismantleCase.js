@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {withRouter} from 'react-router-dom'
 import { Table,Tag,Input,Select,Button,message,DatePicker } from 'antd';
 import moment from 'moment'
 import {dismantleList} from '../../../requests'
@@ -29,13 +30,11 @@ const send = () => {
 const deleteCase = () => {
   message.success('暂不支持删除');
 };
-const findCase = () => {
-  message.success('暂不支持查询');
-};
 
 function onChange(date, dateString) {
   console.log(date, dateString);
 }
+@withRouter
 export default class DismantleCase extends Component {
   columns= [{
     title: '案号',
@@ -84,6 +83,12 @@ export default class DismantleCase extends Component {
       isLoding:false
     }
   }
+  findCase = () => {
+    // message.success('暂不支持查询');
+    console.log(this.props)
+    const {history}=this.props
+    history.push("/admin/casedetail")
+  };
   fatchListData=()=>{
     this.setState({
       isLoding:true
@@ -117,9 +122,6 @@ export default class DismantleCase extends Component {
   componentDidMount(){
     this.fatchListData()
   }
-  findCase=()=>{
-    console.log(111)
-  }
   handleTagClick=()=>{
     success()
   }
@@ -150,7 +152,7 @@ export default class DismantleCase extends Component {
             </span>
             </label>
         </label>
-        <Button style={{marginLeft:'20px'}} type="primary" onClick={findCase}>查询</Button>
+        <Button style={{marginLeft:'20px'}} type="primary" onClick={this.findCase}>查询</Button>
         </div>
         <div className="buttons">
           <Button onClick={edit}>编辑</Button>

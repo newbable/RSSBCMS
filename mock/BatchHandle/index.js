@@ -4,7 +4,7 @@ const Mock = require('mockjs')
 const caseIn=({limited,offset})=>{
     // offset=(currentPage-1)*limited
     const currentPage=offset/limited+1
-    const totalCount=81
+    const totalCount=80
     const lastPage=currentPage>=(totalCount/limited)
     const dataCount=lastPage&&(totalCount%limited)!==0?totalCount%limited:limited
     const data=dataCount===1?`data`:`data|${limited}`

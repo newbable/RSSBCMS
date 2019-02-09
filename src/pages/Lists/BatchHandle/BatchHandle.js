@@ -1,10 +1,12 @@
 import React, { Component } from 'react'
-import { Table, Menu,Card,Icon,Tag } from 'antd'
+import { Table, Menu,Card,Icon,Tag,message } from 'antd'
 import moment from 'moment'
 import {caseIn} from '../../../requests'
 
 import './BatchHandle.less'
-
+const success = () => {
+  message.success('暂不支持查看');
+};
 const columns = [{
   title: '案号',
   dataIndex: 'key',
@@ -34,7 +36,7 @@ const columns = [{
   title: '操作',
   key: 'operation',
   render:()=>{
-    return <Tag>查看</Tag>
+    return <Tag onClick={success}>查看</Tag>
   }
 }]
 export default class BatchHandle extends Component {
@@ -50,7 +52,6 @@ export default class BatchHandle extends Component {
       totalPage:0
     }
   }
-
 fetchCase=()=>{
   this.setState({
     loading:true

@@ -46,3 +46,9 @@ export const caseIn=(data)=>{
 export const dismantleList=(data)=>{
   return ajax.post('/api/v1/dismantlelist',data)
 }
+export const editData=(id)=>{
+  return ajax.post(`/api/articleEdit/${id}`)
+}
+export const saveData=(data)=>{
+  return ajax.post(`/api/saveArticle`,data)
+}

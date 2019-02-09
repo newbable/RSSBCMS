@@ -17,6 +17,7 @@ const news=require('./newsDetail')
 // 案件录入
 const casein=require('./BatchHandle')
 const dismantleList=require('./DismantleCase')
+const edit=require('./Edit')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
@@ -27,6 +28,7 @@ app.use(playimg)
 app.use(news)
 app.use(casein)
 app.use(dismantleList)
+app.use(edit)
 
 app.use('/api/v1/tongji',tongji)
 app.use('/api/v1/query',query)

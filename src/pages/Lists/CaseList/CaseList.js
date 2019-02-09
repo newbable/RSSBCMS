@@ -98,9 +98,12 @@ export default class CaseList extends Component {
     componentDidMount(){
       this.fatchListData()
     }
-    findCase=()=>{
-      console.log(111)
-    }
+    findCase = () => {
+      // message.success('暂不支持查询');
+      console.log(this.props)
+      const {history}=this.props
+      history.push("/admin/casedetail")
+    };
     handleTagClick=()=>{
       success()
     }
