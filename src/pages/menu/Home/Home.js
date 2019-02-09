@@ -5,7 +5,6 @@ import 'swiper/dist/css/swiper.min.css'
 import {List} from 'antd'
 
 import {homePlay} from '../../../requests'
-
 import './Home.less'
 
 @withRouter
