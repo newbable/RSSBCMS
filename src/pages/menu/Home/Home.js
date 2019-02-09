@@ -79,7 +79,7 @@ export default class Home extends Component {
       header={<h3>今日要闻</h3>}
       bordered
       dataSource={this.state.news}
-      renderItem={item => (<List.Item onClick={this.handleListClick}>{item}</List.Item>)}
+      renderItem={item => (<List.Item onClick={this.handleListClick} style={{cursor:'pointer'}}>{item}</List.Item>)}
     />
        </div>
       </div>

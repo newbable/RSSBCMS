@@ -13,7 +13,7 @@ import {
     NotFound,
     Notice,
     MsgUpdate,
-    CodeUpdate
+    workBoard
 } from './pages'
 const routes=[{
     path:'/home',
@@ -113,8 +113,8 @@ const routes=[{
     userCenter:true
 },{
     path:'/ncodeupdate',
-    component:CodeUpdate,
-    title:'修改密码',
+    component:workBoard,
+    title:'工作台',
     isMenu:false,
     exact:false,
     userCenter:true
