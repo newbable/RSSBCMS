@@ -43,3 +43,6 @@ export const newsDetail=()=>{
 export const caseIn=(data)=>{
   return ajax.post('/api/v1/casein',data)
 }
+export const dismantleList=(data)=>{
+  return ajax.post('/api/v1/dismantlelist',data)
+}

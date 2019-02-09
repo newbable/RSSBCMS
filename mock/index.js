@@ -16,6 +16,7 @@ const playimg=require('./HomePlay')
 const news=require('./newsDetail')
 // 案件录入
 const casein=require('./BatchHandle')
+const dismantleList=require('./DismantleCase')
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
@@ -25,6 +26,7 @@ app.use(login)
 app.use(playimg)
 app.use(news)
 app.use(casein)
+app.use(dismantleList)
 
 app.use('/api/v1/tongji',tongji)
 app.use('/api/v1/query',query)
