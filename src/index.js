@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux'
 import {BrowserRouter as Router,Route,Switch,Redirect} from 'react-router-dom'
 import App from './App';
-import {Login} from './pages'
+import {Login,NotFound} from './pages'
 
 import store from './store'
 
@@ -17,6 +17,7 @@ ReactDOM.render(
                 <Switch>
                     <Route path="/admin" component={App}/>
                     <Route path="/login" component={Login}/>
+                    <Route path="/404" component={NotFound}/>
                     <Redirect to="/admin" from="/" exact/>
                     <Redirect to="/admin/404"/>
                 </Switch>

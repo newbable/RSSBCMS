@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
-import { Table,Tag,Col,Input,Select } from 'antd';
+import { Table,Tag,Input,Select,Button,message } from 'antd';
 import moment from 'moment'
-// import { Resizable } from 'react-resizable';
 import {fatchCaseList} from '../../../requests'
 import './CaseList.less'
 
 const Option = Select.Option;
+const success = () => {
+  message.success('暂不支持办理');
+};
 export default class CaseList extends Component {
 
     columns= [{
@@ -49,7 +51,7 @@ export default class CaseList extends Component {
       title: '操作',
       key: 'action',
       render: () => (
-        <Tag>办理</Tag>
+        <Tag onClick={this.handleTagClick}>办理</Tag>
       ),
     }]
     constructor(){
@@ -95,23 +97,36 @@ export default class CaseList extends Component {
     }
     componentDidMount(){
       this.fatchListData()
-    };
+    }
+    findCase=()=>{
+      console.log(111)
+    }
+    handleTagClick=()=>{
+      success()
+    }
     render() {   
     return (
       <div>
         <h2>在办案件列表</h2>
         <div id="findCase">
-        <Col span={4}>
           <label>
-            <Input defaultValue="26888888" size="default"/>
-          </label>
-        </Col>
-        <Col span={6}>
-          <Select style={{}} defaultValue="Home">
-            <Option value="Home">Home</Option>
-            <Option value="Company">Company</Option>
+            <span>
+              案号:&nbsp;(&nbsp;<Input size="default" style={{width:'100px'}}/>&nbsp;)&nbsp;
+            </span>
+            </label>
+        <span>
+          <Select style={{width:'200px'}} defaultValue="浙执">
+            <Option value="浙执1">浙执1</Option>
+            <Option value="浙执2">浙执2</Option>
+            <Option value="浙执3">浙执3</Option>
           </Select>
-        </Col>
+        </span>
+        <label>
+          <span>
+          &nbsp;第&nbsp;<Input size="default" style={{width:'100px'}}/>&nbsp;号&nbsp;
+          </span>
+        </label>
+        <Button style={{marginLeft:'20px'}} type="primary" onClick={this.findCase}>查询</Button>
         </div>
         <Table
         bordered
