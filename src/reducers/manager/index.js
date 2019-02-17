@@ -1,8 +1,8 @@
 const initState={
     username:'newbable',
     nation:'汉',
-    nativePlace:'四川绵阳',
-    email:'1558781725@qq.com',
+    nativePlace:'四川成都',
+    email:'123456789@qq.com',
     address:'',
     phone:'',
     Ename:'adward',
